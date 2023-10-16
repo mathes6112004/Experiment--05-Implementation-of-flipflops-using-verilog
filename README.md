@@ -102,39 +102,120 @@ Q(t+1)=T′Q(t)+TQ(t)′
 ⇒Q(t+1)=T⊕Q(t)
 
 ### Procedure
-/* write all the steps invloved */
+Create a New Project:
 
+Open Quartus and create a new project by selecting "File" > "New Project Wizard."
+Follow the wizard's instructions to set up your project, including specifying the project name, location, and target device (FPGA).
+Create a New Design File:
 
+Once the project is created, right-click on the project name in the Project Navigator and select "Add New File."
+Choose "Verilog HDL File" or "VHDL File," depending on your chosen hardware description language.
+Write the Combinational Logic Code:
+
+Open the newly created Verilog or VHDL file and write the code for your combinational logic.
+Compile the Project:
+
+To compile the project, click on "Processing" > "Start Compilation" in the menu.
+Quartus will analyze your code, synthesize it into a netlist, and perform optimizations based on your target FPGA device.
+Analyze and Fix Errors:*
+
+If there are any errors or warnings during the compilation process, Quartus will display them in the Messages window.
+Review and fix any issues in your code if necessary.
+View the RTL diagram.
+6.*Verification:
+
+Click on "File" > "New" > "Verification/Debugging Files" > "University Program VWF".
+Once Waveform is created Right Click on the Input/Output Panel > " Insert Node or Bus" > Click on Node Finder > Click On "List" > Select All.
+Give the Input Combinations according to the Truth Table amd then simulate the Output Waveform.
 
 ### PROGRAM 
-/*
+```
 Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
-*/
-
-
-
-
-
+Developed by: MATHESWARAN K
+RegisterNumber:  212222110024
+```
+##### SR Flipflop
+```
+module flipflop (S,R,Q,Qbar,CLK);
+input S,R,CLK;
+output reg Q,Qbar;
+initial Q=0;
+initial Qbar=1;
+always @(posedge CLK)
+begin
+Q=S|(Q&(~R));
+Qbar=R|(Qbar&(~S));
+end
+endmodule
+```
+##### JK Flipflop:
+```
+module jkflipflop(j,k,clk,q,qbar);
+input j,k,clk;
+output reg q;
+output reg qbar;
+initial q=0;
+initial qbar=1;
+always @(posedge clk)
+begin
+q=(j&(~q))|((~k)&q);
+qbar=((~j)&q)|(k &(~q));
+end 
+endmodule
+```
+#### D Flipflop:
+```
+module dflipflop(d,clk,q,qbar); 
+input d,clk; 
+output reg q; 
+output reg qbar; 
+initial q=0;
+initial qbar=1; 
+always @(posedge clk) 
+begin 
+q=d; 
+qbar=~q; 
+end 
+endmodule
+```
+#### T Flipflop:
+```
+module t(T,clk,q,qbar);
+input T,clk;
+output reg q;
+output reg qbar;
+initial q=0;
+initial qbar=1;
+always @ (posedge clk)
+begin
+q=(T&(~q))|((~T)&q);
+qbar=(~q);
+end
+endmodule
+```
 
 ### RTL LOGIC FOR FLIPFLOPS 
+##### SR Flipflop
+![image](https://github.com/mathes6112004/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119477782/33ed554e-ef86-48ea-9a1a-5dad783c6ab9)
 
+##### JK Flipflop:
+![image](https://github.com/mathes6112004/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119477782/6373121e-a521-4a55-acc5-8d31e2639ff5)
 
+#### D Flipflop:
+![image](https://github.com/mathes6112004/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119477782/11a00419-cbd9-4ddd-bd75-aee78fdc5f7e)
 
+#### T Flipflop:
+![image](https://github.com/mathes6112004/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119477782/7489b2fb-88fa-4c0c-96bd-f05aece93089)
 
-
-
-
-
-
-### TIMING DIGRAMS FOR FLIP FLOPS 
-
-
-
-
-
-
-
+### Output Waveform:
+##### SR Flipflop:
+![image](https://github.com/mathes6112004/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119477782/e100989a-61bd-4fb5-b89a-ebd36935f2bb)
+##### JK Flipflop:
+![image](https://github.com/mathes6112004/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119477782/30ef792d-fa15-4222-9796-876fe13aff09)
+#### D Flipflop:
+![image](https://github.com/mathes6112004/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119477782/707e664b-f14f-4cfd-adb1-076b1be131c3)
+#### T Flipflop:
+![image](https://github.com/mathes6112004/Experiment--05-Implementation-of-flipflops-using-verilog/assets/119477782/eb5b6c38-5f5b-441b-8543-f3011cd5b084)
 
 ### RESULTS 
+All the flipflops are implemented using verilog and their functionality has been validated using their functional tables.
